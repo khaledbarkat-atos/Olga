@@ -1,0 +1,1124 @@
+html
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Przygotowanie do Rozmowy - Olga Marczyk | ZM Skiba</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #faf8f5;
+  --card: #ffffff;
+  --text: #2c2c2c;
+  --text-light: #6b6b6b;
+  --accent: #8B4513;
+  --accent-light: #D2691E;
+  --accent-bg: #f5ede4;
+  --green: #2d6a4f;
+  --green-bg: #e8f5e9;
+  --blue: #1565c0;
+  --blue-bg: #e3f2fd;
+  --red: #c62828;
+  --red-bg: #ffebee;
+  --purple: #6a1b9a;
+  --purple-bg: #f3e5f5;
+  --border: #e8e0d8;
+  --shadow: 0 2px 12px rgba(0,0,0,0.06);
+  --shadow-hover: 0 6px 24px rgba(0,0,0,0.1);
+  --radius: 12px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Source Sans 3', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+.hero {
+  background: linear-gradient(135deg, #3e2723 0%, #5d4037 40%, #8B4513 100%);
+  color: white;
+  padding: 60px 24px 50px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(ellipse at 30% 50%, rgba(255,255,255,0.05) 0%, transparent 60%);
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  margin-bottom: 8px;
+  position: relative;
+}
+
+.hero .subtitle {
+  font-size: 1.1rem;
+  opacity: 0.85;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}
+
+.hero .company-badge {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 6px 20px;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 30px;
+  font-size: 0.85rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 16px 60px;
+}
+
+/* Navigation Tabs */
+.nav-tabs {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 16px 0;
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  z-index: 100;
+  border-bottom: 1px solid var(--border);
+  -webkit-overflow-scrolling: touch;
+}
+
+.nav-tabs::-webkit-scrollbar { display: none; }
+
+.nav-tab {
+  flex-shrink: 0;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  color: var(--text-light);
+}
+
+.nav-tab:hover, .nav-tab.active {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+/* Sections */
+.section {
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+
+.section.active { display: block; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  margin: 28px 0 8px;
+  color: var(--accent);
+}
+
+.section-desc {
+  color: var(--text-light);
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+}
+
+/* Q&A Cards */
+.qa-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 16px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  transition: box-shadow 0.2s;
+}
+
+.qa-card:hover { box-shadow: var(--shadow-hover); }
+
+.qa-question {
+  padding: 16px 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  user-select: none;
+}
+
+.qa-question .num {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--accent-bg);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.qa-question .arrow {
+  margin-left: auto;
+  flex-shrink: 0;
+  transition: transform 0.2s;
+  color: var(--text-light);
+  font-size: 1.2rem;
+}
+
+.qa-card.open .qa-question .arrow { transform: rotate(180deg); }
+
+.qa-answer {
+  display: none;
+  padding: 0 20px 20px;
+  padding-left: 60px;
+}
+
+.qa-card.open .qa-answer { display: block; }
+
+.answer-label {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  padding: 3px 10px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.label-best { background: var(--green-bg); color: var(--green); }
+.label-tip { background: var(--blue-bg); color: var(--blue); }
+.label-warning { background: var(--red-bg); color: var(--red); }
+.label-context { background: var(--purple-bg); color: var(--purple); }
+
+.answer-text {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--text);
+}
+
+.answer-text em {
+  color: var(--accent);
+  font-style: normal;
+  font-weight: 600;
+}
+
+.answer-text .quote {
+  background: var(--accent-bg);
+  border-left: 3px solid var(--accent);
+  padding: 12px 16px;
+  margin: 12px 0;
+  border-radius: 0 8px 8px 0;
+  font-style: italic;
+  font-size: 0.92rem;
+}
+
+/* Info Boxes */
+.info-box {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin-bottom: 16px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.info-box h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  margin-bottom: 10px;
+  color: var(--accent);
+}
+
+.info-box ul {
+  list-style: none;
+  padding: 0;
+}
+
+.info-box li {
+  padding: 5px 0;
+  padding-left: 20px;
+  position: relative;
+  font-size: 0.93rem;
+}
+
+.info-box li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: bold;
+}
+
+/* Salary Box */
+.salary-box {
+  background: linear-gradient(135deg, #f5ede4, #faf8f5);
+  border: 2px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.salary-range {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.salary-label {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  margin-top: 4px;
+}
+
+/* Links Section */
+.link-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 10px;
+  text-decoration: none;
+  color: var(--text);
+  transition: all 0.2s;
+}
+
+.link-card:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-hover);
+}
+
+.link-icon {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.link-title { font-weight: 600; font-size: 0.9rem; }
+.link-url { font-size: 0.78rem; color: var(--text-light); word-break: break-all; }
+
+/* Profile Summary Card */
+.profile-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 24px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  margin-bottom: 20px;
+}
+
+.profile-card .tag {
+  display: inline-block;
+  padding: 3px 10px;
+  background: var(--accent-bg);
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin: 3px 4px 3px 0;
+}
+
+/* Print Button */
+.print-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: white;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(139,69,19,0.3);
+  z-index: 200;
+  transition: transform 0.2s;
+}
+
+.print-btn:hover { transform: scale(1.1); }
+
+@media print {
+  .nav-tabs, .print-btn { display: none !important; }
+  .section { display: block !important; page-break-inside: avoid; }
+  .qa-answer { display: block !important; }
+  .hero { padding: 30px 20px; }
+}
+
+@media (max-width: 600px) {
+  .qa-answer { padding-left: 20px; }
+  .salary-range { font-size: 1.6rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>Przygotowanie do Rozmowy HR</h1>
+  <p class="subtitle">Olga Marczyk — Handlowiec / Współpraca z partnerami biznesowymi</p>
+  <span class="company-badge">Zakłady Mięsne Skiba S.A. — Chojnice</span>
+</div>
+
+<div class="container">
+
+<!-- NAV TABS -->
+<div class="nav-tabs" id="navTabs">
+  <div class="nav-tab active" data-section="about">📋 O firmie Skiba</div>
+  <div class="nav-tab" data-section="profil">👤 Profil Olgi</div>
+  <div class="nav-tab" data-section="ogolne">💬 Pytania ogólne</div>
+  <div class="nav-tab" data-section="motywacja">🎯 Motywacja</div>
+  <div class="nav-tab" data-section="sprzedaz">🤝 Sprzedaż i B2B</div>
+  <div class="nav-tab" data-section="kompetencje">⚡ Kompetencje</div>
+  <div class="nav-tab" data-section="trudne">🔥 Pytania trudne</div>
+  <div class="nav-tab" data-section="wynagrodzenie">💰 Wynagrodzenie</div>
+  <div class="nav-tab" data-section="pytania">❓ Pytania do HR</div>
+  <div class="nav-tab" data-section="linki">🔗 Przydatne linki</div>
+</div>
+
+<!-- ===================== SECTION: O FIRMIE ===================== -->
+<div class="section active" id="about">
+  <h2 class="section-title">Zakłady Mięsne Skiba S.A.</h2>
+  <p class="section-desc">Kluczowe informacje o firmie — musisz to wiedzieć przed rozmową!</p>
+
+  <div class="info-box">
+    <h3>Fakty o firmie</h3>
+    <ul>
+      <li><strong>Założona:</strong> 12 sierpnia 1991 r. przez Andrzeja Skibę</li>
+      <li><strong>Siedziba:</strong> ul. Derdowskiego 23, 89-600 Chojnice</li>
+      <li><strong>Forma prawna:</strong> Spółka Akcyjna (od 2016 r.)</li>
+      <li><strong>Zatrudnienie:</strong> ok. 1 000–1 100 pracowników</li>
+      <li><strong>Średni staż:</strong> 5 lat (wielu pracowników znacznie dłużej)</li>
+      <li><strong>Branża:</strong> przetwórstwo mięsne — wieprzowina, wędliny</li>
+      <li><strong>Rodzinna firma z Kaszub</strong> — ponad 30 lat na rynku</li>
+    </ul>
+  </div>
+
+  <div class="info-box">
+    <h3>Struktura zakładów</h3>
+    <ul>
+      <li>Ubojnia Trzody Chlewnej — Chojnice</li>
+      <li>Ubojnia Bydła — Czersk</li>
+      <li>Przetwórnia Mięsa — Chojnice</li>
+      <li>Sieć sklepów firmowych i hurtowni</li>
+      <li>Własny transport specjalistyczny</li>
+      <li>Chłodnia wysokiego składu i mrożenie płytowe</li>
+    </ul>
+  </div>
+
+  <div class="info-box">
+    <h3>Misja i wartości firmy</h3>
+    <ul>
+      <li><strong>Misja:</strong> „Mamy rosnąć ze smakiem" — ciągły rozwój i doskonalenie</li>
+      <li><strong>Claim:</strong> „Połączeni smakiem" (od rebrandingu 2024)</li>
+      <li><strong>Wartości:</strong> Ludzie i bezpieczeństwo, Jakość priorytetem, Ciągłe doskonalenie, Zaangażowanie, Szacunek i zaufanie</li>
+      <li><strong>Filozofia:</strong> partnerskie podejście, rodzinna atmosfera, współpraca z polskimi rolnikami</li>
+    </ul>
+  </div>
+
+  <div class="info-box">
+    <h3>Eksport i rynki</h3>
+    <ul>
+      <li>Eksport stanowi znaczną część sprzedaży</li>
+      <li>Licencje: UE, kraje spoza UE, Ameryka Północna i Środkowa, Azja, Afryka</li>
+      <li>Od 2012 r.: Chiny, Rosja, Singapur, Korea Płd., USA</li>
+      <li>Współpraca krajowa — hurtownie, sieci handlowe, sklepy firmowe</li>
+    </ul>
+  </div>
+
+  <div class="info-box">
+    <h3>Co odróżnia Skibę od konkurencji</h3>
+    <ul>
+      <li>Pełna kontrola łańcucha — od hodowcy do sklepu</li>
+      <li>Własna ubojnia = kontrola jakości surowca</li>
+      <li>Lean Management od 2018 r.</li>
+      <li>Kaszubskie korzenie i tradycja połączona z nowoczesnością</li>
+      <li>Rebranding 2024 — nowe logo, nowy wizerunek opakowań</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===================== SECTION: PROFIL ===================== -->
+<div class="section" id="profil">
+  <h2 class="section-title">Profil kandydatki — mocne strony Olgi</h2>
+  <p class="section-desc">Kluczowe atuty do podkreślenia na rozmowie</p>
+
+  <div class="profile-card">
+    <h3 style="font-family:'Playfair Display',serif;color:var(--accent);margin-bottom:12px;">Olga Marczyk — Podsumowanie</h3>
+    <p style="margin-bottom:12px;font-size:0.93rem;">Stanowisko docelowe: <strong>Handlowiec / Współpraca z partnerami biznesowymi</strong> (bez zarządzania ludźmi)</p>
+    <div style="margin-bottom:12px;">
+      <span class="tag">Obsługa klienta B2B i B2C</span>
+      <span class="tag">Wyceny i ofertowanie</span>
+      <span class="tag">Sprzedaż internetowa</span>
+      <span class="tag">BaseLinker & Shoper</span>
+      <span class="tag">Fakturowanie</span>
+      <span class="tag">MS Office</span>
+      <span class="tag">LibreCAD / AutoCAD</span>
+      <span class="tag">Relacje długofalowe</span>
+      <span class="tag">Prawo jazdy kat. B</span>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <h3>Największe atuty do podkreślenia</h3>
+    <ul>
+      <li><strong>4+ lata jako Doradca Klienta w Formiq (Drewno-Klejone)</strong> — obsługa klientów indywidualnych i hurtowych, przygotowywanie wycen i ofert</li>
+      <li><strong>Wcześniej 3 lata w PHU Osiński</strong> (ta sama branża) — łącznie ~7 lat doświadczenia w sprzedaży i obsłudze klienta</li>
+      <li><strong>2 lata jako Przedstawiciel Handlowy w KAM-EKO</strong> — bezpośrednie doświadczenie handlowe w terenie</li>
+      <li><strong>Sprzedaż online</strong> — obsługa sklepu internetowego, BaseLinker, Shoper, portale sprzedażowe</li>
+      <li><strong>Wykształcenie ekonomiczne</strong> — studia podyplomowe z rachunkowości (UE Poznań)</li>
+      <li><strong>Doświadczenie księgowe</strong> — asystent ds. księgowości (fakturowanie, dokumenty)</li>
+      <li><strong>Lokalizacja</strong> — mieszka w Chojnicach, firma jest w Chojnicach!</li>
+    </ul>
+  </div>
+
+  <div class="info-box">
+    <h3>Transferable skills (umiejętności transferowalne do branży mięsnej)</h3>
+    <ul>
+      <li>Budowanie i utrzymywanie relacji z klientami B2B</li>
+      <li>Przygotowywanie ofert i wycen — łatwo przeniesie na produkty mięsne</li>
+      <li>Obsługa systemów sprzedażowych i fakturowania</li>
+      <li>Doświadczenie w sprzedaży wielokanałowej (offline + online)</li>
+      <li>Znajomość procesu logistycznego (nadawanie wysyłek)</li>
+      <li>Umiejętność pracy z klientami hurtowymi</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===================== SECTION: OGÓLNE ===================== -->
+<div class="section" id="ogolne">
+  <h2 class="section-title">Pytania ogólne HR</h2>
+  <p class="section-desc">Klasyczne pytania, które z dużym prawdopodobieństwem padną</p>
+
+  <div class="qa-card">
+    <div class="qa-question"><span class="num">1</span><span>Proszę opowiedzieć coś o sobie.</span><span class="arrow">▾</span></div>
+    <div class="qa-answer">
+      <span class="answer-label label-best">Najlepsza odpowiedź</span>
+      <div class="answer-text">
+        <div class="quote">
+          „Nazywam się Olga Marczyk, od ponad siedmiu lat jestem związana ze sprzedażą i obsługą klienta. Obecnie pracuję jako Doradca Klienta w firmie Formiq — Drewno-Klejone w Sępólnie Krajeńskim, gdzie odpowiadam za przygotowywanie wycen i ofert zarówno dla klientów indywidualnych, jak i hurtowych. Buduję i utrzymuję długofalowe relacje z klientami firmy, obsługuję sprzedaż internetową, korzystając z programów BaseLinker i Shoper. Mam też doświadczenie jako Przedstawiciel Handlowy w firmie KAM-EKO, gdzie współpracowałam z partnerami biznesowymi. Ukończyłam studia podyplomowe z rachunkowości na Uniwersytecie Ekonomicznym w Poznaniu, więc mam też solidne zaplecze analityczne. Jestem osobą sumienną, dobrze organizuję swoją pracę i cenię profesjonalne podejście do klienta. Szukam możliwości rozwoju w stabilnej, dużej firmie — i dlatego Zakłady Mięsne Skiba są dla mnie bardzo atrakcyjne."
+        </div>
+        <br>
+        <span class="answer-label label-tip">Wskazówka</span>
+        <p>Trzymaj się max 1,5–2 minuty. Podkreśl doświadczenie B2B, ofertowanie i relacje z klientami — to kluczowe dla stanowiska handlowca w Skibie.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-question"><span class="num">2</span><span>Dlaczego chce Pani zmienić pracę?</span><span class="arrow">▾</span></div>
+    <div class="qa-answer">
+      <span class="answer-label label-best">Najlepsza odpowiedź</span>
+      <div class="answer-text">
+        <div class="quote">
+          „Cenię swoje dotychczasowe doświadczenie, ale szukam nowych wyzwań i możliwości rozwoju. Zakłady Mięsne Skiba to firma o ugruntowanej pozycji na rynku, z szerokim zasięgiem — krajowym i międzynarodowym. Chciałabym wykorzystać swoje kompetencje handlowe w większej organizacji, która inwestuje w rozwój pracowników i stawia na długofalowe relacje z partnerami biznesowymi. Ponadto mieszkam w Chojnicach, więc Skiba to dla mnie naturalna możliwość rozwoju kariery blisko domu."
+        </div>
+        <br>
+        <span class="answer-label label-warning">Czego nie mówić</span>
+        <p>Nigdy nie krytykuj obecnego pracodawcy. Nie mów o niskich zarobkach jako głównym powodzie. Skup się na <em>rozwoju</em> i <em>nowych wyzwaniach</em>.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-question"><span class="num">3</span><span>Jakie są Pani mocne strony?</span><span class="arrow">▾</span></div>
+    <div class="qa-answer">
+      <span class="answer-label label-best">Najlepsza odpowiedź</span>
+      <div class="answer-text">
+        <div class="quote">
+          „Moją największą mocną stroną jest umiejętność budowania relacji z klientami. W obecnej pracy wielu klientów wraca do mnie, bo czują się dobrze obsłużeni i wiedzą, że mogą na mnie polegać. Jestem też bardzo dobrze zorganizowana — potrafię jednocześnie prowadzić kilku klientów, przygotowywać oferty i dbać o terminowość realizacji. Kolejny atut to moje doświadczenie w sprzedaży wielokanałowej — radzę sobie zarówno w kontakcie bezpośrednim, jak i w sprzedaży online."
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-question"><span class="num">4</span><span>Jakie są Pani słabe strony?</span><span class="arrow">▾</span></div>
+    <div class="qa-answer">
+      <span class="answer-label label-best">Najlepsza odpowiedź</span>
+      <div class="answer-text">
+        <div class="quote">
+          „Zdarza mi się być zbyt skrupulatną w przygotowywaniu ofert — chcę, żeby każdy szczegół był dopracowany, co czasem zajmuje więcej czasu. Nauczyłam się jednak wyznaczać priorytety i oceniać, kiedy oferta jest wystarczająco dobra, żeby ją wysłać, a kiedy naprawdę wymaga dodatkowej pracy."
+        </div>
+        <br>
+        <span class="answer-label label-tip">Wskazówka</span>
+        <p>Wybierz słabość, która jest jednocześnie zaletą (np. perfekcjonizm w kontekście handlowym). Pokaż, że jesteś świadoma i pracujesz nad tym.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-question"><span class="num">5</span><span>Gdzie widzi się Pani za 3–5 lat?</span><span class="arrow">▾</span></div>
+    <div class="qa-answer">
+      <span class="answer-label label-best">Najlepsza odpowiedź</span>
+      <div class="answer-text">
+        <div class="quote">
+          „Za 3–5 lat chciałabym być doświadczonym handlowcem w Zakładach Mięsnych Skiba, z doskonałą znajomością branży mięsnej i szeroką siecią kontaktów z partnerami biznesowymi. Chciałabym rozwijać swoje kompetencje w zakresie budowania relacji z kluczowymi klientami i mieć realny wpływ na wyniki sprzedażowe firmy. Zależy mi na stabilnym, długofalowym rozwoju w jednej organizacji."
+        </div>
+        <br>
+        <span class="answer-label label-tip">Wskazówka</span>
+        <p>Skoro stanowisko jest <em>bez zarządzania ludźmi</em>, nie mów o zostaniu kierownikiem. Podkreśl rozwój ekspercki i lojalność.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-question"><span class="num">6</span><span>Jak opisałaby Pani swój styl pracy?</span><span class="arrow">▾</span></div>
+    <div class="qa-answer">
+      <span class="answer-label label-best">Najlepsza odpowiedź</span>
+      <div class="answer-text">
+        <div class="quote">
+          „Jestem osobą zorganizowaną i samodzielną. Lubię planować swoją pracę i wyznaczać cele na dany dzień czy tydzień. Jednocześnie potrafię elastycznie reagować, gdy pojawia się pilne zapytanie od klienta. Dobrze pracuję zarówno samodzielnie, jak i w zespole — w mojej obecnej pracy ściśle współpracuję z działem produkcji i logistyki, żeby zapewnić klientom terminową realizację zamówień."
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== SECTION: MOTYWACJA ===================== -->
+<div class="section" id="motywacja">
+  <h2 class="section-title">Pytania o motywację</h2>
+  <p class="section-desc">Dlaczego akurat Skiba? Dlaczego branża mięsna?</p>
+
+  <div class="qa-card">
+    <div class="qa-question"><span class="num">1</span><span>Dlaczego chce Pani pracować w Zakładach Mięsnych Skiba?</span><span class="arrow">▾</span></div>
+    <div class="qa-answer">
+      <span class="answer-label label-best">Najlepsza odpowiedź</span>
+      <div class="answer-text">
+        <div class="quote">
+          „Zakłady Mięsne Skiba to firma, którą znam od lat — jako mieszkanka Chojnic widzę, jak firma się rozwija i jaką ma pozycję na rynku. Imponuje mi fakt, że to polska, rodzinna firma z ponad 30-letnim doświadczeniem, która łączy tradycję z nowoczesnością — rebranding z 2024 roku to doskonały przykład. Cenię też wartości firmy, szczególnie partnerskie podejście i nacisk na jakość. Jako handlowiec chciałabym reprezentować markę, z którą się utożsamiam — a „Połączeni smakiem" to hasło, które naprawdę do mnie przemawia."
+        </div>
+        <br>
+        <span class="answer-label label-context">Dlaczego ta odpowiedź działa</span>
+        <p>Pokazujesz, że znasz firmę (rebranding, claim, wartości). Podkreślasz lokalność. Łączysz swoje wartości z wartościami firmy.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-question"><span class="num">2</span><span>Dlaczego branża mięsna? Nie ma Pani doświadczenia w tej branży.</span><span class="arrow">▾</span></div>
+    <div class="qa-answer">
+      <span class="answer-label label-best">Najlepsza odpowiedź</span>
+      <div class="answer-text">
+        <div class="quote">
+          „To prawda, że nie pracowałam wcześniej w branży mięsnej, ale moje doświadczenie handlowe jest uniwersalne — budowanie relacji z klientami, przygotowywanie ofert, negocjowanie warunków i dbanie o zadowolenie klienta to umiejętności, które działają w każdej branży. Szybko uczę się nowych produktów — w obecnej pracy musiałam poznać specyfikę drewna klejonego i technologii konstrukcyjnych, co udało mi się zrobić w krótkim czasie. Jestem pewna, że z takim samym zaangażowaniem poznam asortyment Skiby. A branża spożywcza mnie interesuje, bo produkty mięsne to coś, co każdy zna — łatwiej rozmawiać z klientem o produkcie, który jest bliski codziennemu życiu."
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-question"><span class="num">3</span><span>Co Panią motywuje w pracy?</span><span class="arrow">▾</span></div>
+    <div class="qa-answer">
+      <span class="answer-label label-best">Najlepsza odpowiedź</span>
+      <div class="answer-text">
+        <div class="quote">
+          „Największą satysfakcję daje mi zamknięcie dobrej transakcji — nie chodzi tylko o sam wynik, ale o świadomość, że klient jest zadowolony i wróci. Motywują mnie też wyznaczone cele sprzedażowe, bo lubię mierzyć swoje postępy. Ważna jest dla mnie również dobra atmosfera w zespole i poczucie, że moja praca realnie przyczynia się do rozwoju firmy."
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-question"><span class="num">4</span><span>Co Pani wie o naszej firmie?</span><span class="arrow">▾</span></div>
+    <div class="qa-answer">
+      <span class="answer-label label-best">Najlepsza odpowiedź</span>
+      <div class="answer-text">
+        <div class="quote">
+          „Zakłady Mięsne Skiba zostały założone w 1991 roku przez Pana Andrzeja Skibę — zaczynały z 12 pracownikami i 20 produktami, a dziś zatrudniają ponad tysiąc osób. Firma ma trzy zakłady: ubojnię trzody w Chojnicach, ubojnię bydła w Czersku i przetwórnię mięsa. Specjalizujecie się w mięsie wieprzowym i wędlinach. Od 2012 roku mocno rozwijacie eksport — macie licencje na rynki Unii Europejskiej, Azji, Ameryki Północnej. W 2024 roku przeszliście rebranding z nowym logo i hasłem „Połączeni smakiem". Wiem też, że firma wdraża Lean Management od 2018 roku. To firma, która naprawdę inwestuje w rozwój."
+        </div>
+        <br>
+        <span class="answer-label label-tip">Wskazówka</span>
+        <p>To pytanie pojawia się BARDZO często. Wyrecytowanie konkretnych faktów robi ogromne wrażenie na HR.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== SECTION: SPRZEDAŻ ===================== -->
+<div class="section" id="sprzedaz">
+  <h2 class="section-title">Pytania o sprzedaż i współpracę B2B</h2>
+  <p class="section-desc">Pytania specyficzne dla stanowiska handlowca</p>
+
+  <div class="qa-card">
+    <div class="qa-question"><span class="num">1</span><span>Jak buduje Pani relacje z partnerami biznesowymi?</span><span class="arrow">▾</span></div>
+    <div class="qa-answer">
+      <span class="answer-label label-best">Najlepsza odpowiedź</span>
+      <div class="answer-text">
+        <div class="quote">
+          „Budowanie relacji zaczynam od uważnego słuchania — najpierw staram się dokładnie zrozumieć potrzeby klienta, zanim zaproponuję rozwiązanie. W mojej obecnej pracy mam klientów, z którymi współpracuję od kilku lat — regularnie się z nimi kontaktuję, nawet gdy nie mają aktualnych zamówień, żeby utrzymać relację. Ważna jest też rzetelność — dotrzymywanie terminów, szybkie odpowiadanie na zapytania i transparentność w kwestii cen i warunków. Wierzę, że w relacjach B2B zaufanie buduje się przez konsekwencję i profesjonalizm, nie przez jednorazowe gesty."
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-question"><span class="num">2</span><span>Jak pozyskuje Pani nowych klientów?</span><span class="arrow">▾</span></div>
+    <div class="qa-answer">
+      <span class="answer-label label-best">Najlepsza odpowiedź</span>
+      <div class="answer-text">
+        <div class="quote">
+          „Łączę kilka metod: aktywne polecenia od zadowolonych klientów, aktywną obecność na portalach sprzedażowych, cold calling i cold mailing do potencjalnych partnerów. W mojej obecnej pracy sporo nowych klientów pochodzi z portali sprzedażowych, na których aktywnie promujemy produkty. Staram się też analizować rynek i identyfikować firmy, które mogą potrzebować naszych produktów. W branży mięsnej wyobrażam sobie, że ważne będą też relacje z sieciami handlowymi, hurtowniami i gastronomią — chętnie bym się w to zaangażowała."
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-question"><span class="num">3</span><span>Proszę opisać sytuację, w której musiała Pani rozwiązać reklamację lub problem klienta.</span><span class="arrow">▾</span></div>
+    <div class="qa-answer">
+      <span class="answer-label label-best">Najlepsza odpowiedź</span>
+      <div class="answer-text">
+        <div class="quote">
+          „W mojej obecnej pracy miałam sytuację, gdy klient hurtowy otrzymał produkt z niewielkim defektem. Klient był zdenerwowany, bo miał go użyć w pilnym projekcie. Zamiast odsyłać sprawę do reklamacji, natychmiast skontaktowałam się z działem produkcji, ustaliłam możliwość szybkiej wymiany i zaproponowałam klientowi tymczasowe rozwiązanie. W ciągu 48 godzin problem został rozwiązany, a klient nie tylko został, ale złożył kolejne zamówienie. Nauczyło mnie to, że szybka reakcja i przejęcie odpowiedzialności za problem jest ważniejsze niż szukanie winnych."
+        </div>
+        <br>
+        <span class="answer-label label-tip">Wskazówka</span>
+        <p>Stosuj metodę <em>STAR</em> (Sytuacja → Zadanie → Akcja → Rezultat). Zawsze kończ pozytywnym wynikiem.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-question"><span class="num">4</span><span>Jak reaguje Pani na odmowę klienta?</span><span class="arrow">▾</span></div>
+    <div class="qa-answer">
+      <span class="answer-label label-best">Najlepsza odpowiedź</span>
+      <div class="answer-text">
+        <div class="quote">
+          „Odmowa to naturalny element sprzedaży — nie traktuję jej osobiście. Staram się dowiedzieć, co stoi za odmową — czy to kwestia ceny, terminu, czy brak aktualnej potrzeby. Jeśli klient mówi „nie teraz", zostawiam otwarte drzwi i kontaktuję się za jakiś czas. Wiele moich najlepszych transakcji wynikało z cierpliwego podtrzymywania kontaktu po początkowej odmowie."
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-question"><span class="num">5</span><span>Jak radzi sobie Pani z realizacją celów sprzedażowych?</span><span class="arrow">▾</span></div>
+    <div class="qa-answer">
+      <span class="answer-label label-best">Najlepsza odpowiedź</span>
+      <div class="answer-text">
+        <div class="quote">
+          „Rozbijam cele na mniejsze zadania tygodniowe i dzienne — ile kontaktów nawiązać, ile ofert wysłać, ilu klientów odwiedzić. Monitoruję swoje wyniki i jeśli widzę, że w połowie miesiąca jestem poniżej celu, intensyfikuję działania. Ważne jest też planowanie — wiem, którzy klienci mają największy potencjał i na nich skupiam najwięcej uwagi."
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-question"><span class="num">6</span><span>Jak pracuje Pani z systemami CRM i narzędziami sprzedażowymi?</span><span class="arrow">▾</span></div>
+    <div class="qa-answer">
+      <span class="answer-label label-best">Najlepsza odpowiedź</span>
+      <div class="answer-text">
+        <div class="quote">
+          „W obecnej pracy korzystam z programów BaseLinker i Shoper do zarządzania sprzedażą wielokanałową, a także systemu wewnętrznego do fakturowania. Pracuję też na co dzień z pakietem Microsoft Office. Szybko uczę się nowych systemów — jestem przekonana, że bez problemu opanuję narzędzia, z których korzysta Skiba."
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-question"><span class="num">7</span><span>Proszę „sprzedać mi" produkt z naszej oferty (np. szynkę, kiełbasę).</span><span class="arrow">▾</span></div>
+    <div class="qa-answer">
+      <span class="answer-label label-best">Najlepsza odpowiedź</span>
+      <div class="answer-text">
+        <div class="quote">
+          „Zanim zacznę, chciałabym zapytać — jaki asortyment Państwo obecnie oferują swoim klientom? Na jakim wolumenie pracujecie tygodniowo? [SŁUCHAJ ODPOWIEDZI] — Rozumiem. W takim razie chciałabym zaproponować Państwu współpracę z Zakładami Mięsnymi Skiba. To firma z ponad 30-letnim doświadczeniem, z własną ubojnią, co gwarantuje świeżość i kontrolę jakości na każdym etapie. Nasze produkty są certyfikowane na eksport do UE, Azji i Ameryki, więc standardy jakości są najwyższe. Oferujemy też własny transport specjalistyczny, co zapewnia terminowość dostaw. Czy mogę przygotować dla Państwa indywidualną ofertę dopasowaną do Państwa potrzeb?"
+        </div>
+        <br>
+        <span class="answer-label label-tip">Wskazówka</span>
+        <p>Kluczowa zasada: NAJPIERW pytaj, POTEM sprzedawaj. Pokaż, że rozumiesz potrzeby klienta. Nie recytuj cech produktu — mów o korzyściach.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== SECTION: KOMPETENCJE ===================== -->
+<div class="section" id="kompetencje">
+  <h2 class="section-title">Pytania o kompetencje miękkie</h2>
+  <p class="section-desc">Pytania behawioralne — jak reagujesz w konkretnych sytuacjach</p>
+
+  <div class="qa-card">
+    <div class="qa-question"><span class="num">1</span><span>Jak radzi sobie Pani z pracą pod presją czasu?</span><span class="arrow">▾</span></div>
+    <div class="qa-answer">
+      <span class="answer-label label-best">Najlepsza odpowiedź</span>
+      <div class="answer-text">
+        <div class="quote">
+          „Presja czasu mobilizuje mnie do działania. W obecnej pracy często muszę przygotować wycenę na drugi dzień — klient potrzebuje szybkiej odpowiedzi, żeby podjąć decyzję. Nauczyłam się priorytetyzować zadania: najpierw to, co pilne i ważne, potem reszta. Kluczowa jest dla mnie dobra organizacja — korzystam z kalendarza i listy zadań, żeby nic nie umknęło."
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-question"><span class="num">2</span><span>Proszę opisać sytuację konfliktu w pracy i jak go Pani rozwiązała.</span><span class="arrow">▾</span></div>
+    <div class="qa-answer">
+      <span class="answer-label label-best">Najlepsza odpowiedź</span>
+      <div class="answer-text">
+        <div class="quote">
+          „Pamiętam sytuację, gdy kolega z działu produkcji nie zgadzał się z terminem realizacji zamówienia, który obiecałam klientowi. Zamiast eskalować sprawę, umówiłam się z nim na rozmowę i zapytałam, co jest przyczyną opóźnienia. Okazało się, że brakowało materiału. Wspólnie znaleźliśmy rozwiązanie — skorygowaliśmy termin o jeden dzień i poinformowałam klienta proaktywnie. Klient docenił transparentność, a z kolegą ustaliliśmy procedurę wcześniejszego sprawdzania dostępności materiałów. Od tej pory nie mieliśmy podobnych sytuacji."
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-question"><span class="num">3</span><span>Jak pracuje Pani w zespole?</span><span class="arrow">▾</span></div>
+    <div class="qa-answer">
+      <span class="answer-label label-best">Najlepsza odpowiedź</span>
+      <div class="answer-text">
+        <div class="quote">
+          „Uważam, że handlowiec nigdy nie pracuje w pełni samodzielnie — sukces sprzedażowy zależy od współpracy z logistyką, produkcją, księgowością. W mojej pracy regularnie konsultuję się z kolegami z produkcji w sprawie terminów i dostępności produktów. Chętnie dzielę się informacjami z rynku i zawsze otwarcie komunikuję, gdy potrzebuję wsparcia. Wierzę, że otwarty przepływ informacji w zespole to fundament dobrych wyników."
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-question"><span class="num">4</span><span>Jakie jest Pani największe osiągnięcie zawodowe?</span><span class="arrow">▾</span></div>
+    <div class="qa-answer">
+      <span class="answer-label label-best">Najlepsza odpowiedź</span>
+      <div class="answer-text">
+        <div class="quote">
+          „Jestem dumna z tego, że w mojej obecnej pracy udało mi się zbudować portfel lojalnych klientów hurtowych, którzy regularnie zamawiają i polecają nas innym. Kiedy zaczynałam, sprzedaż online była w firmie na początkowym etapie — aktywnie rozwinęłam kanały sprzedaży na portalach internetowych przy użyciu BaseLinker i Shoper, co znacząco zwiększyło zasięg firmy."
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-question"><span class="num">5</span><span>Jak radzi sobie Pani z monotonią i powtarzalnością zadań?</span><span class="arrow">▾</span></div>
+    <div class="qa-answer">
+      <span class="answer-label label-best">Najlepsza odpowiedź</span>
+      <div class="answer-text">
+        <div class="quote">
+          „W sprzedaży trudno mówić o monotonii, bo każdy klient jest inny. Ale nawet w powtarzalnych zadaniach, takich jak przygotowywanie ofert, staram się szukać sposobów na usprawnienie procesu — na przykład stworzyłam szablony wycen, które pozwalają szybciej reagować na zapytania. Rutyna w pracy handlowca jest raczej dyscypliną — systematyczne kontakty z klientami to klucz do sukcesu."
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== SECTION: TRUDNE ===================== -->
+<div class="section" id="trudne">
+  <h2 class="section-title">Pytania trudne i podchwytliwe</h2>
+  <p class="section-desc">Przygotuj się na te pytania — mogą zaskoczyć!</p>
+
+  <div class="qa-card">
+    <div class="qa-question"><span class="num">1</span><span>Dlaczego powinniśmy wybrać właśnie Panią, a nie innego kandydata?</span><span class="arrow">▾</span></div>
+    <div class="qa-answer">
+      <span class="answer-label label-best">Najlepsza odpowiedź</span>
+      <div class="answer-text">
+        <div class="quote">
+          „Nie znam innych kandydatów, więc nie mogę się z nimi porównywać. Mogę natomiast powiedzieć, co wniosę: siedem lat doświadczenia w sprzedaży B2B i B2C, umiejętność budowania długofalowych relacji, doświadczenie w obsłudze wielokanałowej, a także solidne zaplecze analityczne dzięki wykształceniu ekonomicznemu. Do tego mieszkam w Chojnicach, więc jestem gotowa na pełne zaangażowanie bez dojazdów. Jestem też osobą, która szybko wdraża się w nowe branże — zrobiłam to już kilkukrotnie w swojej karierze."
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-question"><span class="num">2</span><span>Jak zareaguje Pani, gdy klient powie, że konkurencja jest tańsza?</span><span class="arrow">▾</span></div>
+    <div class="qa-answer">
+      <span class="answer-label label-best">Najlepsza odpowiedź</span>
+      <div class="answer-text">
+        <div class="quote">
+          „Rozumiem, że cena jest ważna, ale zanim porównamy same liczby, zapytałabym klienta: czy porównuje Pan dokładnie taki sam produkt i takie same warunki? W branży mięsnej jakość surowca, świeżość, certyfikaty eksportowe i terminowość dostaw to wartości, za które warto zapłacić. Skiba ma własną ubojnię i pełną kontrolę jakości od hodowcy do półki — nie każdy producent to oferuje. Moim zadaniem jest pokazać klientowi wartość, a nie walczyć wyłącznie ceną."
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-question"><span class="num">3</span><span>Czy jest Pani gotowa na pracę w terenie / delegacje?</span><span class="arrow">▾</span></div>
+    <div class="qa-answer">
+      <span class="answer-label label-best">Najlepsza odpowiedź</span>
+      <div class="answer-text">
+        <div class="quote">
+          „Tak, jestem na to gotowa. Mam czynne prawo jazdy kategorii B i doświadczenie w pracy jako Przedstawiciel Handlowy w firmie KAM-EKO, gdzie regularne wizyty u klientów były częścią codziennych obowiązków. Rozumiem, że bezpośredni kontakt z partnerem biznesowym jest nie do zastąpienia."
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-question"><span class="num">4</span><span>Czy ma Pani jakieś doświadczenie z branżą spożywczą / FMCG?</span><span class="arrow">▾</span></div>
+    <div class="qa-answer">
+      <span class="answer-label label-best">Najlepsza odpowiedź</span>
+      <div class="answer-text">
+        <div class="quote">
+          „Bezpośrednio w branży spożywczej nie pracowałam, ale w KAM-EKO jako Przedstawiciel Handlowy obsługiwałam klientów B2B, co jest bardzo zbliżone do modelu pracy handlowca w branży mięsnej — współpraca z hurtowniami, negocjowanie warunków, budowanie relacji z partnerami. Szybko się uczę — w Formiq musiałam poznać złożony asortyment drewna klejonego i w krótkim czasie stałam się specjalistką. Jestem przekonana, że z produktami Skiby będzie tak samo."
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-question"><span class="num">5</span><span>Co zrobi Pani w pierwszych 30 dniach pracy?</span><span class="arrow">▾</span></div>
+    <div class="qa-answer">
+      <span class="answer-label label-best">Najlepsza odpowiedź</span>
+      <div class="answer-text">
+        <div class="quote">
+          „W pierwszych 30 dniach skupiłabym się na trzech rzeczach: po pierwsze — dokładne poznanie asortymentu Skiby, procesu produkcji i standardów jakości. Chcę wiedzieć, co sprzedaję, żeby mówić o tym z przekonaniem. Po drugie — poznanie zespołu i wewnętrznych procedur, żeby sprawnie współpracować z logistyką, produkcją i księgowością. Po trzecie — przegląd aktualnej bazy klientów i rozpoczęcie budowania relacji z przydzielonymi partnerami biznesowymi."
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-question"><span class="num">6</span><span>Jak reaguje Pani na krytykę ze strony przełożonego?</span><span class="arrow">▾</span></div>
+    <div class="qa-answer">
+      <span class="answer-label label-best">Najlepsza odpowiedź</span>
+      <div class="answer-text">
+        <div class="quote">
+          „Traktuję konstruktywną krytykę jako informację zwrotną, dzięki której mogę się rozwijać. Staram się nie reagować emocjonalnie, ale zrozumieć, co mogę poprawić. Jeśli czegoś nie rozumiem, pytam o konkretne wskazówki. Wierzę, że osoba, która nie przyjmuje feedbacku, nie rozwija się."
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== SECTION: WYNAGRODZENIE ===================== -->
+<div class="section" id="wynagrodzenie">
+  <h2 class="section-title">Oczekiwania finansowe</h2>
+  <p class="section-desc">Jak odpowiedzieć na pytanie o wynagrodzenie — strategia i dane rynkowe</p>
+
+  <div class="salary-box">
+    <div style="font-size:0.85rem;color:var(--text-light);margin-bottom:4px;">Zakres wynagrodzenia handlowca (2026)</div>
+    <div class="salary-range">5 500 – 8 500 zł brutto</div>
+    <div class="salary-label">podstawa + premia/prowizja | Polska, mniejsze miasta, branża mięsna</div>
+  </div>
+
+  <div class="info-box">
+    <h3>Dane rynkowe 2026</h3>
+    <ul>
+      <li><strong>Średnia krajowa handlowca:</strong> ok. 8 200–8 640 zł brutto/mies.</li>
+      <li><strong>Początkujący handlowiec:</strong> 5 000–6 500 zł brutto</li>
+      <li><strong>Doświadczony handlowiec:</strong> 7 000–10 000 zł brutto</li>
+      <li><strong>Region Chojnice/pomorskie:</strong> stawki zazwyczaj 10–15% niższe od Warszawy/Gdańska</li>
+      <li><strong>Branża mięsna:</strong> stawki zbliżone do średniej FMCG</li>
+      <li><strong>Typowa struktura:</strong> pensja podstawowa + premia za wyniki sprzedażowe</li>
+      <li><strong>Minimalna 2026:</strong> 4 806 zł brutto/mies.</li>
+    </ul>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-question"><span class="num">1</span><span>Jakie są Pani oczekiwania finansowe?</span><span class="arrow">▾</span></div>
+    <div class="qa-answer">
+      <span class="answer-label label-best">Strategia 1 — Podaj widełki</span>
+      <div class="answer-text">
+        <div class="quote">
+          „Biorąc pod uwagę moje doświadczenie w sprzedaży i obsłudze klienta B2B, a także obecne realia rynkowe, myślę o wynagrodzeniu w przedziale 6 000–7 500 zł brutto jako podstawa. Oczywiście jestem otwarta na rozmowę o systemie premiowym opartym o wyniki sprzedażowe — rozumiem, że w pracy handlowca premia stanowi istotny element motywacji."
+        </div>
+        <br>
+        <span class="answer-label label-best">Strategia 2 — Odwróć pytanie</span>
+        <div class="quote">
+          „Chciałabym najpierw lepiej zrozumieć zakres obowiązków i system premiowy, żeby podać realistyczne oczekiwania. Czy mogłaby Pani/Pan powiedzieć, jakie widełki przewiduje firma na tym stanowisku?"
+        </div>
+        <br>
+        <span class="answer-label label-tip">Wskazówki</span>
+        <p>
+          • Zawsze mów o kwotach <em>brutto</em>.<br>
+          • Podaj widełki, nie jedną kwotę — daje to pole do negocjacji.<br>
+          • Wspomnienienie o premii pokazuje, że rozumiesz specyfikę pracy handlowca.<br>
+          • Nie mów za nisko — to sygnał braku pewności siebie.<br>
+          • Nie mów za wysoko — w Chojnicach 10 000 zł brutto to raczej dla seniorów z branżowym doświadczeniem.<br>
+          • <strong>Rekomendowany zakres dla Olgi: 6 000–7 500 zł brutto</strong> (uzasadniony 7-letnim doświadczeniem handlowym).
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-question"><span class="num">2</span><span>Ile Pani zarabia w obecnej pracy?</span><span class="arrow">▾</span></div>
+    <div class="qa-answer">
+      <span class="answer-label label-best">Najlepsza odpowiedź</span>
+      <div class="answer-text">
+        <div class="quote">
+          „Wolałabym skupić się na tym, jaką wartość mogę wnieść do Państwa firmy i jakie wynagrodzenie jest adekwatne do zakresu obowiązków na tym stanowisku. Moje obecne wynagrodzenie odzwierciedla specyfikę mniejszej firmy. Szukam stanowiska, które pozwoli mi na rozwój, i jestem otwarta na rozmowę o warunkach."
+        </div>
+        <br>
+        <span class="answer-label label-warning">Uwaga</span>
+        <p>W Polsce nie masz obowiązku ujawniać obecnych zarobków. Grzecznie przekieruj rozmowę na wartość, którą wnosisz.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== SECTION: PYTANIA DO HR ===================== -->
+<div class="section" id="pytania">
+  <h2 class="section-title">Pytania, które Olga powinna zadać HR</h2>
+  <p class="section-desc">Zadawanie mądrych pytań pokazuje profesjonalizm i zaangażowanie</p>
+
+  <div class="info-box">
+    <h3>Najlepsze pytania do HR (wybierz 3–4)</h3>
+    <ul>
+      <li>Jak wygląda typowy dzień pracy na tym stanowisku?</li>
+      <li>Z jakimi działami firmy będę najczęściej współpracować?</li>
+      <li>Jak wygląda system premiowy i cele sprzedażowe?</li>
+      <li>Czy firma oferuje szkolenia produktowe i branżowe?</li>
+      <li>Ile osób liczy zespół handlowy?</li>
+      <li>Jakie są główne kanały sprzedaży — hurtownie, sieci, gastronomia?</li>
+      <li>Jak wygląda proces wdrożenia nowego pracownika?</li>
+      <li>Czy firma planuje rozwój w nowych obszarach / rynkach?</li>
+      <li>Jakie benefity pozapłacowe oferujecie? (prywatna opieka medyczna, ubezpieczenie grupowe, dofinansowanie wypoczynku?)</li>
+      <li>Jaki jest kolejny etap procesu rekrutacyjnego?</li>
+    </ul>
+  </div>
+
+  <div class="info-box">
+    <h3>Benefity, o które warto zapytać (Skiba oferuje)</h3>
+    <ul>
+      <li>Spotkania integracyjne</li>
+      <li>Preferencyjne pożyczki</li>
+      <li>Karty przedpłacone</li>
+      <li>Dofinansowanie wypoczynku</li>
+      <li>Pikniki rodzinne</li>
+      <li>Szkolenia produktowe i obsługi klienta</li>
+      <li>Stabilne zatrudnienie na umowę o pracę</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===================== SECTION: LINKI ===================== -->
+<div class="section" id="linki">
+  <h2 class="section-title">Przydatne linki</h2>
+  <p class="section-desc">Strony do dalszego przygotowania się</p>
+
+  <a class="link-card" href="https://zmskiba.pl/" target="_blank">
+    <span class="link-icon">🏭</span>
+    <div><div class="link-title">Strona główna ZM Skiba</div><div class="link-url">zmskiba.pl</div></div>
+  </a>
+
+  <a class="link-card" href="https://zmskiba.pl/praca/" target="_blank">
+    <span class="link-icon">💼</span>
+    <div><div class="link-title">Oferty pracy — ZM Skiba</div><div class="link-url">zmskiba.pl/praca</div></div>
+  </a>
+
+  <a class="link-card" href="https://zmskiba.pl/poznajmy-sie/" target="_blank">
+    <span class="link-icon">📖</span>
+    <div><div class="link-title">O firmie — poznajmy się (historia, misja, wartości)</div><div class="link-url">zmskiba.pl/poznajmy-sie</div></div>
+  </a>
+
+  <a class="link-card" href="https://zmskiba.pl/kontakt/" target="_blank">
+    <span class="link-icon">📞</span>
+    <div><div class="link-title">Kontakt — struktura handlowa firmy</div><div class="link-url">zmskiba.pl/kontakt</div></div>
+  </a>
+
+  <a class="link-card" href="https://zmskiba.pl/wedliny/" target="_blank">
+    <span class="link-icon">🥩</span>
+    <div><div class="link-title">Produkty — wędliny (poznaj asortyment!)</div><div class="link-url">zmskiba.pl/wedliny</div></div>
+  </a>
+
+  <a class="link-card" href="https://zmskiba.pl/mieso/" target="_blank">
+    <span class="link-icon">🥓</span>
+    <div><div class="link-title">Produkty — mięso</div><div class="link-url">zmskiba.pl/mieso</div></div>
+  </a>
+
+  <a class="link-card" href="https://www.facebook.com/p/Zak%C5%82ady-Mi%C4%99sne-Skiba-SA-100063713853626/" target="_blank">
+    <span class="link-icon">📱</span>
+    <div><div class="link-title">Facebook ZM Skiba (śledź aktualności)</div><div class="link-url">facebook.com/ZakładyMięsneSkiba</div></div>
+  </a>
+
+  <a class="link-card" href="https://www.instagram.com/zmskiba/" target="_blank">
+    <span class="link-icon">📸</span>
+    <div><div class="link-title">Instagram ZM Skiba</div><div class="link-url">instagram.com/zmskiba</div></div>
+  </a>
+
+  <hr style="margin:24px 0;border:0;border-top:1px solid var(--border);">
+  <p style="font-weight:600;margin-bottom:10px;">Przydatne strony z poradami rekrutacyjnymi:</p>
+
+  <a class="link-card" href="https://saleswise.pl/blog/rozmowa-kwalifikacyjna-przedstawiciel-handlowy/" target="_blank">
+    <span class="link-icon">📝</span>
+    <div><div class="link-title">Rozmowa kwalifikacyjna — przedstawiciel handlowy (Saleswise)</div><div class="link-url">saleswise.pl</div></div>
+  </a>
+
+  <a class="link-card" href="https://pracahandlowiec.pl/blog/article/sprzedaj-mi-ten-dlugopis-czyli-najczesciej-zadawane-pytania-na-rozmowie-kwalifikacyjnej-i-przykladowe-odpowiedzi" target="_blank">
+    <span class="link-icon">🖊️</span>
+    <div><div class="link-title">„Sprzedaj mi ten długopis" — najczęstsze pytania</div><div class="link-url">pracahandlowiec.pl</div></div>
+  </a>
+
+  <a class="link-card" href="https://motivahr.pl/blog/rozmowa-kwalifikacyjna-na-stanowisko-przedstawiciela-handlowego-kompleksowy-przewodnik/" target="_blank">
+    <span class="link-icon">🎯</span>
+    <div><div class="link-title">Kompleksowy przewodnik — rozmowa handlowiec (MotivaHR)</div><div class="link-url">motivahr.pl</div></div>
+  </a>
+
+  <a class="link-card" href="https://wynagrodzenia.pl/moja-placa/ile-zarabia-handlowiec" target="_blank">
+    <span class="link-icon">💰</span>
+    <div><div class="link-title">Zarobki handlowca — kalkulator wynagrodzeń</div><div class="link-url">wynagrodzenia.pl</div></div>
+  </a>
+
+  <a class="link-card" href="https://www.zarabiaj.pl/zarobki/ile-zarabia-handlowiec/" target="_blank">
+    <span class="link-icon">📊</span>
+    <div><div class="link-title">Ile zarabia handlowiec 2026 — przegląd wynagrodzeń</div><div class="link-url">zarabiaj.pl</div></div>
+  </a>
+</div>
+
+</div><!-- end container -->
+
+<button class="print-btn" onclick="window.print()" title="Drukuj">🖨</button>
+
+<script>
+// Tab navigation
+document.querySelectorAll('.nav-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(tab.dataset.section).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+
+// Accordion Q&A
+document.querySelectorAll('.qa-question').forEach(q => {
+  q.addEventListener('click', () => {
+    const card = q.parentElement;
+    card.classList.toggle('open');
+  });
+});
+
+// Open all cards for print
+window.addEventListener('beforeprint', () => {
+  document.querySelectorAll('.qa-card').forEach(c => c.classList.add('open'));
+  document.querySelectorAll('.section').forEach(s => s.classList.add('active'));
+});
+</script>
+
+</body>
+</html>
